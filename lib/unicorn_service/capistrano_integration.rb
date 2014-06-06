@@ -13,12 +13,12 @@ module UnicornService
 
       capistrano_config.load do
         before(CapistranoIntegration::TASKS) do
-          not_seted =  []
-          not_seted << 'application' if fetch(:application, nil).nil?
-          not_seted << 'deploy_to'   if fetch(:deploy_to, nil).nil?
-          not_seted << 'user'        if fetch(:user, nil).nil?
-          unless not_seted.empty?
-            fail "Necessary constants have not been initialized: #{not_seted.inject(''){|s, item| s + "#{item}; " }}"
+          not_set =  []
+          not_set << 'application' if fetch(:application, nil).nil?
+          not_set << 'deploy_to'   if fetch(:deploy_to, nil).nil?
+          not_set << 'user'        if fetch(:user, nil).nil?
+          unless not_set.empty?
+            fail "Necessary constants have not been initialized: #{not_set.inject(''){|s, item| s + "#{item}; " }}"
           end
         end
 

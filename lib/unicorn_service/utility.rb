@@ -27,7 +27,7 @@ APP_CURRENT=$APP_ROOT/current
 APP_USER=#{user}
 PID=$APP_ROOT/shared/pids/unicorn.pid
 ENV=production
-CMD="cd $APP_CURRENT && bundle exec unicorn -E $ENV -D -c $APP_CURRENT/config/unicorn.rb"
+CMD="cd $APP_CURRENT && DEPLOY_ENV=#{deploy_env} bundle exec unicorn -E $ENV -D -c $APP_CURRENT/config/unicorn.rb"
 action="$1"
 set -u
 
