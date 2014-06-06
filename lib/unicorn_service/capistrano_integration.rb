@@ -36,8 +36,24 @@ module UnicornService
             run "#{sudo} update-rc.d unicorn_#{deploy_env}.#{application} defaults"
           end
 
-          desc 'start service'
-          task :start do
+          desc 'Add to chkconfig'
+          task :chkconfig_add do
+            run "#{sudo} chkconfig --add unicorn_#{deploy_env}.#{application} defaults"
+          end
+
+          desc 'Remove from chkconfig'
+          task :chkconfig_del do
+            run "#{sudo} chkconfig --del unicorn_#{deploy_env}.#{application} defaults"
+          end
+
+          desc 'start chkconfig service'
+          task :start_chkconfig do
+            create_script
+            chkconfig_add
+          end
+
+          desc 'start rc.d service'
+          task :start_rc do
             create_script
             update_rc
           end
