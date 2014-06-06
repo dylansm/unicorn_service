@@ -33,7 +33,7 @@ module UnicornService
 
           desc 'Update rc.d'
           task :update_rc do
-            run "#{sudo} update-rc.d unicorn_#{deploy_env}#{application} defaults"
+            run "#{sudo} update-rc.d unicorn_#{deploy_env}.#{application} defaults"
           end
 
           desc 'start service'
