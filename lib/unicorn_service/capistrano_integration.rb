@@ -39,10 +39,12 @@ module UnicornService
           desc 'Add to chkconfig'
           task :chkconfig_add do
             run "#{sudo} chkconfig --add unicorn_#{deploy_env}.#{application}"
+            run "#{sudo} chkconfig unicorn_#{deploy_env}.#{application} on"
           end
 
           desc 'Remove from chkconfig'
           task :chkconfig_del do
+            run "#{sudo} chkconfig unicorn_#{deploy_env}.#{application} off"
             run "#{sudo} chkconfig --del unicorn_#{deploy_env}.#{application}"
           end
 
