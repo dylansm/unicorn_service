@@ -27,13 +27,13 @@ module UnicornService
         namespace :unicorn_service do
           desc 'Add script in /etc/init.d'
           task :create_script do
-            put_sudo (create_initd_file deploy_to, user), "/etc/init.d/unicorn.#{application}"
+            put_sudo (create_initd_file deploy_to, user), "/etc/init.d/unicorn.#{deploy_env}.#{application}"
             run "#{sudo} chmod +x /etc/init.d/unicorn.#{application}"
           end
 
           desc 'Update rc.d'
           task :update_rc do
-            run "#{sudo} update-rc.d unicorn.#{application} defaults"
+            run "#{sudo} update-rc.d unicorn.#{deploy_env}#{application} defaults"
           end
 
           desc 'start service'

@@ -23,12 +23,25 @@ Set constants:
     set :user, 'your_user'
     set :deploy_to, '/path/to/app'
 
+### What's different in this fork
+
+I've added DEPLOY_ENV which is either staging or production to accommodate multiple stages.
+
 ###Run
 
-For create deamon and update rc.d run:
+To create deamon run:
 
     bundle exec cap unicorn_service:create_script
 
+(Be sure Capistrano is set to run using pty not tty.)
+
+To install init script run:
+
+    bundle exec cap unicorn_service:update_rc
+
+To do it all at once:
+
+    bundle exec cap unicorn_service:start
 
 ## Contributing
 
